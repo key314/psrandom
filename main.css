@@ -1,0 +1,109 @@
+body {
+    background-color: rgba(0, 0, 0, 0);
+    background-blend-mode: lighten;
+    transition: 1.2s;
+}
+
+.contents {
+    text-align: center;
+    font-family: Arial, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, メイリオ, Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
+.title {
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.result {
+    display: inline-block;
+    width: 60%;
+    padding: 8px;
+    font-size: medium;
+    background: #ffffff;
+    border: solid 2.5px;
+    border-radius: 10px;
+    border-color: #00bfff;
+    color: #000000;
+    transition: 1.2s;
+}
+
+.titleimage {
+    box-sizing: border-box;
+    background: url('/img/kousaku_family_mother.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    width: 15%;
+    padding-top: 15%;
+    margin: auto;
+    transition: 1.2s;
+}
+
+button.generate {
+    font-size: large;
+    font-weight: bold;
+    padding: 10px 30px;
+    background: #00bfff;
+    color: #ffffff;
+    border-style: none;
+    border-radius: 5px;
+    outline: 0;
+}
+
+.detailmenu {
+    display: inline-block;
+    width: 60%;
+    text-align: left;
+}
+
+.detailmenu details summary {
+    outline: 0;
+}
+
+.detailsettings input[type=number] {
+    width: 40px;
+}
+
+.detailsettings ul,.trickselect ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.detailsettings,.trickselect {
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 1.2s;
+    color: #fff;
+}
+
+/* 詳細設定表示時のデザイン */
+body.advanced {
+    background-color: rgba(0, 0, 0, 0.8);
+    background-blend-mode: darken;
+    background-image: url(/img/bg_hell_jigoku.jpg);
+    color: #ffffff;
+}
+
+body.advanced .titleimage {
+    background: url('/img/omen_hannya.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
+
+body.advanced button.generate {
+    background: #8b0000;
+}
+
+body.advanced .result {
+    background: #000;
+    border-color: #8b0000;
+    color: #ffffff;
+}
+
+body.advanced .detailsettings,body.advanced .trickselect {
+    height: 100%;
+    overflow: hidden;
+    opacity: 1;
+}

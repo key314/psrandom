@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ペン回し ランダムコンボジェネレータ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src="pscombo.js"></script>
+</head>
+<body>
+    <div class="contents">
+        <p class="title">ランダムコンボジェネレータ</p>
+        <div class="titleimage"></div>
+        <br>
+        <button onclick="clickBtn()" class="generate">コンボ生成</button>
+        <br>
+        <p class="result" style="display: none;"></p>
+        <div id="tweetbutton"></div><script src="https://platform.twitter.com/widgets.js"></script>
+        <br>
+        <div class="detailmenu">
+            <details id="details_sup" class="supplement">
+                <summary>補足</summary>
+                <ul>
+                    <li>回しやすさは考慮せず、前のトリックから繋げられる技をランダムに選出しコンボを作ります。</li>
+                    <ul class="forbasic">
+                        <li>選出されるのは基礎技ばかりなので初心者でも安心です。</li>
+                    </ul>
+                    <li>合体技には対応していません。</li>
+                    <li>トリックの定義や表記は<a href="http://www.penspinning.info/" target="_blank">ペン回し資料室</a>を参考にしています。
+                        <ul>
+                            <li>ハーフウィンドミルのみ例外で、0.5回転の軸移動しないトリックとして扱っています。</li>
+                        </ul>
+                    </li>
+                    <li>2~5軸でペンを持った状態からノーマルへ繋がるようになっています。
+                        <ul>
+                            <li>厳密にはシメトリカルパスxy-1x⇒ノーマルのコンボですが、慣例に従いシメトリカルパスは省略します。</li>
+                            <li>同様にリバース⇒シメトリカルパス1x-xyも、単にリバースと表記します。</li>
+                        </ul>
+                    <li><label><input type="checkbox" onclick="switchMode(this.checked)">上級者向け設定を表示</label></li>
+                    </li>
+                </ul>
+            </details>
+            <br>
+            <details class="detailsettings" open>
+                <summary>詳細設定</summary>
+                <ul>
+                    <li><label><input type="checkbox" name="chkbox_finish_normal" checked>ノーマルでフィニッシュ</label></li>
+                    <li><label><input type="checkbox" name="chkbox_pivot" onclick="enableElement('chkbox_pivot_normal', !this.checked)">隣り合わない軸でのキャッチを有効化</label></li>
+                    <ul>
+                        <li><label><input type="checkbox" name="chkbox_pivot_normal">ノーマル/リバースのみ12以外でのキャッチを有効化</label></li>
+                    </ul>
+                    <li><label><input type="checkbox" name="chkbox_multiple" onclick="enableElement('input_multiple', this.checked)">マルチプルを有効化</label></li>
+                    <ul>
+                        <li>追加する回転数の上限: <input type="number" name="input_multiple" min="0.5" step="0.5" value="0.5" disabled><br></li>
+                    </ul>
+                    <li>コンボの長さ: <input type="number" name="input_length" min="1" max="15" step="1" value="8"></li>
+                </ul>
+            </details>
+            <details class="trickselect">
+                <summary>トリック選択</summary>
+                <ul>
+                    <li><label><input type="checkbox" name="chkbox_tricks" value="Normal" checked>ノーマル</label></li>
+                    <li><label><input type="checkbox" name="chkbox_tricks" value="Reverse" checked>リバース</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="Sonic" checked>ソニック</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="SonicReverse" checked>ソニックリバース</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="SymmetricalSonic" checked>シメトリカルソニック</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="SymmetricalSonicReverse" checked>シメトリカルソニックリバース</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="Pass" checked>パス</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="PassReverse" checked>パスリバース</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="SymmetricalPass" checked>シメトリカルパス</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="SymmetricalPassReverse" checked>シメトリカルパスリバース</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="Charge">チャージ</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="ChargeReverse">チャージリバース</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="HalfWindmill" checked>ハーフウィンドミル</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="HalfWindmillReverse" checked>ハーフウィンドミルリバース</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="Gunman" checked>ガンマン</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="GunmanReverse" checked>ガンマンリバース</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="SymmetricalGunman">シメトリカルガンマン</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="SymmetricalGunmanReverse">シメトリカルガンマンリバース</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="BackAround" checked>バックアラウンド</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="BackAroundReverse" checked>バックアラウンドリバース</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="NeoBackAround" checked>ネオバックアラウンド</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="Shadow" checked>シャドウ</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="ShadowReverse">シャドウリバース</label></li>
+                <li><label><input type="checkbox" name="chkbox_tricks" value="ScissorSpin" checked>シザースピン</label></li>
+                </ul>
+            </details>
+        </div>
+
+        <script>
+            function clickBtn() {
+                // トリックON/OFFチェックボックスの状態を取得
+                let cb_tricks = document.getElementsByName("chkbox_tricks");
+                for (let i = 0; i < cb_tricks.length; i++) {
+                    enabled_trick[cb_tricks[i].value] = cb_tricks[i].checked;
+                }
+                // 詳細設定の状態を取得
+                finish_normal = document.getElementsByName("chkbox_finish_normal")[0].checked;
+                allow_skip_pivot = document.getElementsByName("chkbox_pivot")[0].checked;
+                if (allow_skip_pivot)
+                    allow_skip_pivot_after_normal = true;
+                else
+                    allow_skip_pivot_after_normal = document.getElementsByName("chkbox_pivot_normal")[0].checked;
+                if (document.getElementsByName("chkbox_multiple")[0].checked)
+                    multiple_add_max = parseFloat(document.getElementsByName("input_multiple")[0].value);
+                else
+                    multiple_add_max = 0;
+                combo_length = parseInt(document.getElementsByName("input_length")[0].value);
+                
+                // コンボを作成
+                let resultStr = generateCombo();
+                if (resultStr == "")
+                    resultStr = "oh... TT";
+                // 結果を表示
+                document.getElementsByClassName("result")[0].textContent = toKatakana(resultStr);
+                document.getElementsByClassName("result")[0].style.display = 'inline-block';
+
+                //ツイートボタンを作る
+                setTweetButton(toShortKatakana(resultStr));
+            }
+
+            // ツイートボタンを作る
+            function setTweetButton(tweettext) {
+                let btnEl = document.getElementById("tweetbutton");
+                while(btnEl.lastChild)
+                    btnEl.removeChild(btnEl.lastChild);
+                twttr.widgets.createShareButton(
+                    "",
+                    btnEl,
+                    {
+                        lang: 'ja',
+                        text: tweettext,
+                        hashtags: "コンボジェネレータ"
+                    }
+                )
+            }
+
+            // ある要素に連動して有効/無効を切り替える
+            function enableElement(targetName, enable) {
+                document.getElementsByName(targetName)[0].disabled = !enable;
+            }
+
+            // 詳細設定有効時のデザインにするために、bodyにclassを設定
+            function switchMode(enable) {
+                if (enable) {
+                    document.body.classList.add("advanced");
+                    document.getElementById("details_sup").open = false;
+                }
+                else {
+                    document.body.classList.remove("advanced");
+                }
+            }
+        </script>
+    </div>
+    <div class="bg"></div>
+</body>
+</html>
