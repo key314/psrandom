@@ -52,7 +52,7 @@ button.generate {
 
 .detailmenu {
     display: inline-block;
-    width: 700px;
+    max-width: 700px;
     text-align: left;
 }
 
