@@ -29,7 +29,7 @@ body {
 
 .titleimage {
     box-sizing: border-box;
-    background: url('/img/kousaku_family_mother.png');
+    background: url('img/kousaku_family_mother.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center center;
@@ -81,12 +81,12 @@ button.generate {
 body.advanced {
     background-color: rgba(0, 0, 0, 0.8);
     background-blend-mode: darken;
-    background-image: url(/img/bg_hell_jigoku.jpg);
+    background-image: url('img/bg_hell_jigoku.jpg');
     color: #ffffff;
 }
 
 body.advanced .titleimage {
-    background: url('/img/omen_hannya.png');
+    background: url('img/omen_hannya.png');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center center;
