@@ -16,7 +16,7 @@ body {
 
 .result {
     display: inline-block;
-    width: 60%;
+    max-width: 700px;
     padding: 8px;
     font-size: medium;
     background: #ffffff;
