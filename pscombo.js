@@ -785,8 +785,8 @@ function replaceByDict(orderstr, dict) {
 
 function countTwtrLength(tarstr) {
     let lngt = 0;
-    for (const c in tarstr) {
-        if (c.match(/[ -~]/))
+    for (let i = 0; i < tarstr.length; i++) {
+        if (tarstr[i].match(/[ -~]/))
             lngt += 0.5;
         else
             lngt += 1;

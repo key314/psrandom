@@ -124,6 +124,7 @@
 
                 //ツイートボタンを作る
                 let tweetstr = toShortKatakana(resultStr);
+                console.log(countTwtrLength(tweetstr));
                 if (countTwtrLength(tweetstr) > 118)
                     tweetstr = toSuperShortKatakana(resultStr);
                 setTweetButton(tweetstr);
