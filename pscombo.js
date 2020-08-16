@@ -446,7 +446,7 @@ class SymmetricalGunmanReverse extends SymmetricalGunman {
         if (!initPosition.isSkip() && !endPosition.isSkip())
             return initPosition.fingerD + "-_SymmetricalGunmanReverse_";
         else
-            return "_SymmetricalGunman]Reverse_" + this.getSuffix(initPosition, endPosition);
+            return "_SymmetricalGunmanReverse_" + this.getSuffix(initPosition, endPosition);
     }
 
     static weight(initPosition) {
