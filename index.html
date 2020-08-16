@@ -86,6 +86,12 @@
                 <li><label><input type="checkbox" name="chkbox_tricks" value="ScissorSpin" checked>シザースピン</label></li>
                 </ul>
             </details>
+            <br>
+            <details class="updates">
+                <summary>更新履歴</summary>
+                2020/8/16 一部技の表示不具合修正、ツイート用の技名をできるだけ短くなるよう改善<br>
+                2020/8/15 公開
+            </details>
         </div>
 
         <script>
@@ -117,7 +123,10 @@
                 document.getElementsByClassName("result")[0].style.display = 'inline-block';
 
                 //ツイートボタンを作る
-                setTweetButton(toShortKatakana(resultStr));
+                let tweetstr = toShortKatakana(resultStr);
+                if (countTwtrLength(tweetstr) > 118)
+                    tweetstr = toSuperShortKatakana(resultStr);
+                setTweetButton(tweetstr);
             }
 
             // ツイートボタンを作る

@@ -679,7 +679,7 @@ const KATAKANA_DICT = {
     "_ShadowReverse_": "シャドウリバース",
     "_ScissorSpin_": "シザースピン"
 }
-const SHORT_KATAKANA_DICT = {
+const SHORT_KATAKANA_HALF_DICT = {
     "=>": "⇒",
     "_Normal_": "ﾉｰﾏﾙ",
     "_Reverse_": "ﾘﾊﾞｰｽ",
@@ -707,6 +707,62 @@ const SHORT_KATAKANA_DICT = {
     "_ShadowReverse_": "ｼｬﾄﾞｳﾘﾊﾞ",
     "_ScissorSpin_": "ｼｻﾞｽﾋﾟ"
 }
+const SHORT_KATAKANA_DICT = {
+    "=>": "⇒",
+    "_Normal_": "ノーマル",
+    "_Reverse_": "リバース",
+    "_Sonic_": "ソニック",
+    "_SonicReverse_": "ソニリバ",
+    "_SymmetricalSonic_": "シメソニ",
+    "_SymmetricalSonicReverse_": "シメソニリバ",
+    "_Pass_": "パス",
+    "_PassReverse_": "パスリバ",
+    "_SymmetricalPass_": "シメパス",
+    "_SymmetricalPassReverse_": "シメパスリバ",
+    "_Charge_": "チャージ",
+    "_ChargeReverse_": "チャージリバ",
+    "_HalfWindmill_": "ハフウィン",
+    "_HalfWindmillReverse_": "ハフウィンリバ",
+    "_Gunman_": "ガンマン",
+    "_GunmanReverse_": "ガンリバ",
+    "_SymmetricalGunman_": "シメガン",
+    "_SymmetricalGunmanReverse_": "シメガンリバ",
+    "_BackAround_": "バクアラ",
+    "_BackAroundReverse_": "バクリバ",
+    "_NeoBackAround_": "ネオバ",
+    "_NeoBackAroundReverse_": "ネオバリバ",
+    "_Shadow_": "シャドウ",
+    "_ShadowReverse_": "シャドウリバ",
+    "_ScissorSpin_": "シザスピ"
+}
+const SUPER_SHORT_KATAKANA_DICT = {
+    "=>": "⇒",
+    "_Normal_": "ノマ",
+    "_Reverse_": "リバ",
+    "_Sonic_": "ソニ",
+    "_SonicReverse_": "ソニリバ",
+    "_SymmetricalSonic_": "シメソニ",
+    "_SymmetricalSonicReverse_": "シメソニリバ",
+    "_Pass_": "パス",
+    "_PassReverse_": "パスリバ",
+    "_SymmetricalPass_": "シメパス",
+    "_SymmetricalPassReverse_": "シメパスリバ",
+    "_Charge_": "チャジ",
+    "_ChargeReverse_": "チャジリバ",
+    "_HalfWindmill_": "ハフウィン",
+    "_HalfWindmillReverse_": "ハフウィンリバ",
+    "_Gunman_": "ガン",
+    "_GunmanReverse_": "ガンリバ",
+    "_SymmetricalGunman_": "シメガン",
+    "_SymmetricalGunmanReverse_": "シメガンリバ",
+    "_BackAround_": "バク",
+    "_BackAroundReverse_": "バクリバ",
+    "_NeoBackAround_": "ネオ",
+    "_NeoBackAroundReverse_": "ネオリバ",
+    "_Shadow_": "シャド",
+    "_ShadowReverse_": "シャドリバ",
+    "_ScissorSpin_": "シザスピ"
+}
 
 function toKatakana(orderstr) {
     return replaceByDict(orderstr, KATAKANA_DICT);
@@ -716,9 +772,24 @@ function toShortKatakana(orderstr) {
     return replaceByDict(orderstr, SHORT_KATAKANA_DICT);
 }
 
+function toSuperShortKatakana(orderstr) {
+    return replaceByDict(orderstr, SUPER_SHORT_KATAKANA_DICT);
+}
+
 function replaceByDict(orderstr, dict) {
     for (const key in dict) {
         orderstr = orderstr.replace(new RegExp(key, 'g'), dict[key]);
     }
     return orderstr;
+}
+
+function countTwtrLength(tarstr) {
+    let lngt = 0;
+    for (const c in tarstr) {
+        if (c.match(/[ -~]/))
+            lngt += 0.5;
+        else
+            lngt += 1;
+    }
+    return lngt;
 }

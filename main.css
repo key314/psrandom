@@ -77,6 +77,15 @@ button.generate {
     color: #fff;
 }
 
+.updates {
+    margin-top: 80px;
+    font-size: small;
+}
+
+.updates ul {
+    list-style-type: none;
+}
+
 /* 詳細設定表示時のデザイン */
 body.advanced {
     background-color: rgba(0, 0, 0, 0.8);
